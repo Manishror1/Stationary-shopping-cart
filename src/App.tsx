@@ -9,6 +9,8 @@ import { GlueStick } from "./Classes/GlueStick";
 import { QuantityDecorator } from "./Classes/QuantityDecorator";
 
 function App() {
+
+    // List of stationary items available in the shop
   const items = [
     { id: "book", item: new ExerciseBook() },
     { id: "pen", item: new Pen() },
@@ -17,9 +19,11 @@ function App() {
     { id: "glue", item: new GlueStick() },
   ];
 
+    // Stores selected item ids
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  // Controls the display of total cost
   const [showCost, setShowCost] = useState(false);
-
+// Stores the quantity of each item selected by the user
   const [quantities, setQuantities] = useState({
     book: 1,
     pen: 1,
@@ -28,6 +32,7 @@ function App() {
     glue: 1,
   });
 
+// Handles checkbox changes for item selection
   const handleCheckboxChange = (id: string) => {
     setShowCost(false);
 
@@ -38,6 +43,7 @@ function App() {
     }
   };
 
+  // Handles quantity changes for each item
   const handleQuantityChange = (id: string, quantity: number) => {
     setShowCost(false);
 
@@ -47,6 +53,7 @@ function App() {
     });
   };
 
+  // Calculates the total cost based on selected items and their quantities
   const calculateTotalCost = () => {
     let total = 0;
 
@@ -117,7 +124,8 @@ function App() {
             })
           )}
         </div>
-
+        
+// Button to display total cost
         <button className="total-button" onClick={() => setShowCost(true)}>
           Display Total Cost
         </button>
